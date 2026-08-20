@@ -417,6 +417,13 @@ $('#configOverlay').addEventListener('click', e=>{ if(e.target.id==='configOverl
 
 // ============== بداية التشغيل ==============
 loadItems();
+
+// تسجيل الـ Service Worker (يمنع حذف التطبيق تلقائيًا بعد إضافته للشاشة الرئيسية)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
+  });
+}
 </script>
 </body>
 </html>
